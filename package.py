@@ -62,13 +62,14 @@ class Package(object):
         oldpath = enter_dir(self.srcpath)
         
 
-        package_file = self.Fetch()
         if hasattr(self,'workdir'):
             if not isinstance(self.workdir,str):
                 self.workdir = self.workdir(package_file)
 
             if os.path.isdir(self.workdir):
                 shutil.rmtree(self.workdir)
+        
+        package_file = self.Fetch()
 
         workdir = self.Unpack(package_file)
 
